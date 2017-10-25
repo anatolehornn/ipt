@@ -230,7 +230,7 @@ if (!process.env.TRAVISTEST) {
 
 	test.serial.cb('should copy to clipboard from cli', t => {
 		let content = '';
-		let run = spawn('node', ['../src/cli.js', './fixtures/clipboard', '--no-ttys=true', '--copy', '--unquoted'], {
+		let run = spawn('node', ['./src/cli.js', './test/fixtures/clipboard', '--no-ttys=true', '--copy', '--unquoted'], {
 			cwd: cwd
 		});
 		run.stdout.on('data', data => {
@@ -254,7 +254,7 @@ if (!process.env.TRAVISTEST) {
 
 test.cb('should run from cli', t => {
 	let content = '';
-	let run = spawn('node', ['../src/cli.js', './fixtures/simpletest', '--no-ttys=true', '-n'], {
+	let run = spawn('node', ['./src/cli.js', './test/fixtures/simpletest', '--no-ttys=true', '-n'], {
 		cwd: cwd,
 		stdio: ['pipe', 'pipe', 'inherit']
 	});
@@ -272,7 +272,7 @@ test.cb('should run from cli', t => {
 
 test.cb('should run using multiple from cli', t => {
 	let content = '';
-	let run = spawn('node', ['../src/cli.js', './fixtures/simpletest', '--no-ttys=true', '-n', '-m'], {
+	let run = spawn('node', ['./src/cli.js', './test/fixtures/simpletest', '--no-ttys=true', '-n', '-m'], {
 		cwd: cwd,
 		stdio: ['pipe', 'pipe', 'inherit']
 	});
@@ -294,7 +294,7 @@ test.cb('should run using multiple from cli', t => {
 
 test.cb('should run different encoding using --file-encoding option', t => {
 	let content = '';
-	let run = spawn('node', ['../src/cli.js', './fixtures/asciiencode', '--no-ttys=true', '-n', '--file-encoding=ascii'], {
+	let run = spawn('node', ['./src/cli.js', './test/fixtures/asciiencode', '--no-ttys=true', '-n', '--file-encoding=ascii'], {
 		cwd: cwd,
 		stdio: ['pipe', 'pipe', 'inherit']
 	});
@@ -312,7 +312,7 @@ test.cb('should run different encoding using --file-encoding option', t => {
 
 test.cb('should run other different encoding using --file-encoding option', t => {
 	let content = '';
-	let run = spawn('node', ['../src/cli.js', './fixtures/utf16encode', '--no-ttys=true', '-n', '--file-encoding=utf16le'], {
+	let run = spawn('node', ['./src/cli.js', './test/fixtures/utf16encode', '--no-ttys=true', '-n', '--file-encoding=utf16le'], {
 		cwd: cwd,
 		stdio: ['pipe', 'pipe', 'inherit']
 	});
@@ -330,7 +330,7 @@ test.cb('should run other different encoding using --file-encoding option', t =>
 
 test.cb('should display help message on --help', t => {
 	let content = '';
-	let run = spawn('node', ['../src/cli.js', './fixtures/simpletest', '--no-ttys=true', '-n', '--help'], {
+	let run = spawn('node', ['./src/cli.js', './test/fixtures/simpletest', '--no-ttys=true', '-n', '--help'], {
 		cwd: cwd,
 		stdio: ['pipe', 'pipe', 'inherit']
 	});
@@ -347,7 +347,7 @@ test.cb('should display help message on --help', t => {
 
 test.cb('should display help message on empty invocation', t => {
 	let content = '';
-	let run = spawn('node', ['../src/cli.js'], {
+	let run = spawn('node', ['./src/cli.js'], {
 		cwd: cwd,
 		stdio: ['pipe', 'pipe', 'inherit']
 	});
@@ -364,7 +364,7 @@ test.cb('should display help message on empty invocation', t => {
 
 test.cb('should display version on --version', t => {
 	let content = '';
-	let run = spawn('node', ['../src/cli.js', './fixtures/simpletest', '--no-ttys=true', '-n', '--version'], {
+	let run = spawn('node', ['./src/cli.js', './test/fixtures/simpletest', '--no-ttys=true', '-n', '--version'], {
 		cwd: cwd,
 		stdio: ['pipe', 'pipe', 'inherit']
 	});
@@ -381,7 +381,7 @@ test.cb('should display version on --version', t => {
 
 test.cb('should be able to use custom separators with --separator', t => {
 	let content = '';
-	let run = spawn('node', ['../src/cli.js', './fixtures/test.csv', '--no-ttys=true', '-n', '--separator=,'], {
+	let run = spawn('node', ['./src/cli.js', './test/fixtures/test.csv', '--no-ttys=true', '-n', '--separator=,'], {
 		cwd: cwd,
 		stdio: ['pipe', 'pipe', 'inherit']
 	});
@@ -401,7 +401,7 @@ test.cb('should be able to use custom separators with --separator', t => {
 
 test.cb('should be able to use different separators with --separator', t => {
 	let content = '';
-	let run = spawn('node', ['../src/cli.js', './fixtures/customseparators', '--no-ttys=true', '-n', '--separator=:'], {
+	let run = spawn('node', ['./src/cli.js', './test/fixtures/customseparators', '--no-ttys=true', '-n', '--separator=:'], {
 		cwd: cwd,
 		stdio: ['pipe', 'pipe', 'inherit']
 	});
@@ -421,7 +421,7 @@ test.cb('should be able to use different separators with --separator', t => {
 
 test.cb('should display error if provided file is not found', t => {
 	let content = '';
-	let run = spawn('node', ['../src/cli.js', './fixtures/inexistentfilename', '--no-ttys=true', '-n'], {
+	let run = spawn('node', ['./src/cli.js', './test/fixtures/inexistentfilename', '--no-ttys=true', '-n'], {
 		cwd: cwd
 	});
 	run.stderr.on('data', data => {
@@ -436,7 +436,7 @@ test.cb('should display error if provided file is not found', t => {
 
 test.cb('should quote result args with white space', t => {
 	let content = '';
-	let run = spawn('node', ['../src/cli.js', './fixtures/white space', '--no-ttys=true', '-n'], {
+	let run = spawn('node', ['./src/cli.js', './test/fixtures/white space', '--no-ttys=true', '-n'], {
 		cwd: cwd
 	});
 	run.stdout.on('data', data => {
@@ -453,7 +453,7 @@ test.cb('should quote result args with white space', t => {
 
 test.cb('should not quote result args with white space if --unquoted option is given', t => {
 	let content = '';
-	let run = spawn('node', ['../src/cli.js', './fixtures/white space', '--no-ttys=true', '-n', '--unquoted'], {
+	let run = spawn('node', ['./src/cli.js', './test/fixtures/white space', '--no-ttys=true', '-n', '--unquoted'], {
 		cwd: cwd
 	});
 	run.stdout.on('data', data => {
